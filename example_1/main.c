@@ -16,14 +16,11 @@ int main(void)
     PCDIR = 0U; // ports 5 and 6
     PCOUT = 0U;
 
-    // we can reference port1, which is a pointer to a concrete struct
-    // however we cannot dereference it as we are not provided with the
-    // implementation detail as defined in `gpio_struct.h`
-//    set_direction(port_1, BIT0);
-//    set_direction(port_6, BIT6);
-    platform_init(platform);
-
     PM5CTL0 &= ~LOCKLPM5;
 
+    // we can reference platform, which is a pointer to a concrete struct
+    // however we cannot dereference it as we are not provided with the
+    // implementation detail as defined in `platform_struct.h`
+    platform_init(platform);
     platform_run(platform);
 }
